@@ -1,26 +1,36 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import space from "./space.json"
+import Cards from "./components/Cards";
+import Wrapper from "./components/Wrapper";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends React.Component {
+  state={
+    space: space
+  }
+
+  removeSpace (identifier) {
+    const newSpace = this.state.space.filter(space => identifier!==space.id);
+    this.setState({space: newSpace});
+  }
+
+  render() {
+    return((
+    <Wrapper>
+      <h1 className="title">Friends List</h1>
+      {this.state.space.map(({id, name, image}) =>
+        <Cards
+        key={id}
+        name={name}
+        image={image}
+        removeSpace={()=>this.removeSpace(id)}/>
+      ) }
+
+    </Wrapper>
+  ));
+    
+}}
+
 
 export default App;
