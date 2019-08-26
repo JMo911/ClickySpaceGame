@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     return((
     <Wrapper>
-      <h1 className="title">Friends List</h1>
+      <h1 className="title">Welcome to Space! Be careful - visit each destination only once or peril! </h1>
       {this.state.space.map(({id, name, image}) =>
         <Cards
         key={id}
